@@ -31,4 +31,6 @@ public class UserDto {
 
     @NotEmpty(message = "Roles field should not be empty")
     private List<Role> roles;
+
+    private String imageId;
 }

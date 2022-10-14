@@ -1,5 +1,6 @@
 package com.ahmet.e_commerce_oct_back.configurations;
 
+import com.ahmet.e_commerce_oct_back.JWT.JwtFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +32,8 @@ public class WebSecurityConfig {
 
     private PasswordEncoder passwordEncoder;
 
+    private JwtFilter jwtFilter;
+
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -48,9 +51,9 @@ public class WebSecurityConfig {
                 .antMatchers("/", "index", "/image/png/**", "/image/jpeg/**", "/css/**", "/js/**").permitAll()
                 .antMatchers("/api/v1/auth/**",
                         "/api/v1/images/**").permitAll()
-                .anyRequest().authenticated();
-//                .and()
-//                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .anyRequest().authenticated()
+               .and()
+               .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 
         return http.build();
