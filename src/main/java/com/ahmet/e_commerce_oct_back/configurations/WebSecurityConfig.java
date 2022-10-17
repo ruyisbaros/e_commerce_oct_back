@@ -50,7 +50,7 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/", "index", "/image/png/**", "/image/jpeg/**", "/css/**", "/js/**").permitAll()
                 .antMatchers("/api/v1/auth/**",
-                        "/api/v1/images/**").permitAll()
+                        "/api/v1/images/**","/api/v1/categories/**").permitAll()
                 .anyRequest().authenticated()
                .and()
                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

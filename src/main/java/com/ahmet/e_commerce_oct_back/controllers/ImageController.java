@@ -35,14 +35,14 @@ public class ImageController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteImage(@PathVariable String id) throws IOException {
-        if(imageService.isImageExist(id)){
-            Image found=imageService.findImage(id);
+        if (imageService.isImageExist(id)) {
+            Image found = imageService.findImage(id);
             cloudinaryService.deleteImage(found.getImageId());
             imageService.deleteImage(found.getImageId());
 
-            return new ResponseEntity<>(new ApiResponse("Image has been deleted",true), HttpStatus.OK);
-        }else{
-            throw new ResourceNotFoundExceptionStringValue("Image","ID",id);
+            return new ResponseEntity<>(new ApiResponse("Image has been deleted", true), HttpStatus.OK);
+        } else {
+            throw new ResourceNotFoundExceptionStringValue("Image", "ID", id);
         }
     }
 }
