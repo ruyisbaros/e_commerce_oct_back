@@ -43,4 +43,23 @@ public class CategoryService {
         cloudinaryService.deleteImage(category.getImage().getImageId());
         categoryRep.deleteById(id);
     }
+
+    public void updateCatgry(CategoryDTO request, Integer id) {
+        Category toUpdate = categoryRep.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundExceptionIntValue("Category", "ID", id));
+
+        if (request.getImageId() != null) {
+            Image image = imageService.findImage(request.getImageId());
+            toUpdate.setImage(image);
+        }
+        toUpdate.setCategoryName(request.getCategoryName());
+        toUpdate.setDescription(request.getDescription());
+        categoryRep.save(toUpdate);
+    }
+
+    public Category getOne(Integer id) {
+
+        return categoryRep.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundExceptionIntValue("Category", "ID", id));
+    }
 }

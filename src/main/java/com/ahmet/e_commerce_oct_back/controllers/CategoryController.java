@@ -31,4 +31,14 @@ public class CategoryController {
     public void deleteCat(@PathVariable Integer id) throws IOException {
         categoryService.deleteCategory(id);
     }
+
+    @PutMapping("/update/{id}")
+    public void updateCat(@Valid @RequestBody CategoryDTO request,@PathVariable Integer id){
+        categoryService.updateCatgry(request,id);
+    }
+
+    @GetMapping("/get_one/{id}")
+    public Category getOne(@PathVariable Integer id){
+        return categoryService.getOne(id);
+    }
 }
