@@ -83,4 +83,9 @@ public class ProductService {
         toUpdate.setRate_times(1);
         return productRep.save(toUpdate);
     }
+
+    public void deleteProduct(Long id) {
+        Product toDelete = this.getOne(id);
+        productRep.deleteById(toDelete.getId());
+    }
 }

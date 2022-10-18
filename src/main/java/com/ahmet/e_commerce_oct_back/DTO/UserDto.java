@@ -33,4 +33,6 @@ public class UserDto {
     private List<Role> roles;
 
     private String imageId;
+
+    private boolean isEnabled;
 }

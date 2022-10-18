@@ -38,6 +38,8 @@ public class AppUser implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    private boolean isEnabled;
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Image image;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

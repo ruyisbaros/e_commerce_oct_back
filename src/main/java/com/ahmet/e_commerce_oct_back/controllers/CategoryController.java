@@ -17,22 +17,22 @@ public class CategoryController {
 
     private CategoryService categoryService;
 
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     public Category create(@Valid @RequestBody CategoryDTO request){
         return categoryService.createNew(request);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/user/all")
     public List<Category> getAll(){
         return categoryService.getAll();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public void deleteCat(@PathVariable Integer id) throws IOException {
         categoryService.deleteCategory(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/admin/update/{id}")
     public void updateCat(@Valid @RequestBody CategoryDTO request,@PathVariable Integer id){
         categoryService.updateCatgry(request,id);
     }

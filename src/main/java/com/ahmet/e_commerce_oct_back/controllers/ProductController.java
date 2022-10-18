@@ -2,8 +2,11 @@ package com.ahmet.e_commerce_oct_back.controllers;
 
 import com.ahmet.e_commerce_oct_back.DTO.ProductDto;
 import com.ahmet.e_commerce_oct_back.entities.Product;
+import com.ahmet.e_commerce_oct_back.exceptions.ApiResponse;
 import com.ahmet.e_commerce_oct_back.services.ProductService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,31 +19,37 @@ public class ProductController {
 
     private ProductService productService;
 
-    @GetMapping("/all")
+    @GetMapping("/user/all")
     public List<Product> getProducts(){
         return productService.getAll();
     }
 
-    @GetMapping("/one/{id}")
+    @GetMapping("/user/one/{id}")
     public Product findOne(@PathVariable Long id){
         return productService.getOne(id);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/admin/update/{id}")
     public Product updateProduct(@Valid @RequestBody ProductDto request,@PathVariable Long id){
         return productService.updateProduct(request,id);
     }
-    @GetMapping("/all/category/{name}")
+    @GetMapping("/user/all/category/{name}")
     public List<Product> getProductByCategory(@PathVariable String name){
         return productService.getByCategory(name);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     public Product createProduct(@Valid @RequestBody ProductDto request){
         return productService.createProduct(request);
     }
 
-    @PutMapping("/update/rate/{id}")
+    @PutMapping("/user/update/rate/{id}")
     public Product updateRate(@PathVariable Long id,double rate){
         return productService.updateRate(id,rate);
+    }
+
+    @DeleteMapping("/admin/delete/{id}")
+    public ResponseEntity<ApiResponse> deleteProduct(@PathVariable Long id){
+        productService.deleteProduct(id);
+        return new ResponseEntity<>(new ApiResponse("Product has been deleted", true),HttpStatus.OK);
     }
 }
