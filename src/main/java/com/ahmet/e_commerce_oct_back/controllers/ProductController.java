@@ -1,9 +1,13 @@
 package com.ahmet.e_commerce_oct_back.controllers;
 
+import com.ahmet.e_commerce_oct_back.DTO.ProductDto;
+import com.ahmet.e_commerce_oct_back.entities.Product;
 import com.ahmet.e_commerce_oct_back.services.ProductService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -11,4 +15,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
 
     private ProductService productService;
+
+    @GetMapping("/all")
+    public List<Product> getProducts(){
+        return productService.getAll();
+    }
+
+    @GetMapping("/one/{id}")
+    public Product findOne(@PathVariable Long id){
+        return productService.getOne(id);
+    }
+    @PutMapping("/update/{id}")
+    public Product updateProduct(@Valid @RequestBody ProductDto request,@PathVariable Long id){
+        return productService.updateProduct(request,id);
+    }
+    @GetMapping("/all/category/{name}")
+    public List<Product> getProductByCategory(@PathVariable String name){
+        return productService.getByCategory(name);
+    }
+
+    @PostMapping("/create")
+    public Product createProduct(@Valid @RequestBody ProductDto request){
+        return productService.createProduct(request);
+    }
+
+    @PutMapping("/update/rate/{id}")
+    public Product updateRate(@PathVariable Long id,double rate){
+        return productService.updateRate(id,rate);
+    }
 }

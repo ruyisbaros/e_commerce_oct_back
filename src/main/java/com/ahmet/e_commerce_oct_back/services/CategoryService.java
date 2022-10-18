@@ -57,9 +57,13 @@ public class CategoryService {
         categoryRep.save(toUpdate);
     }
 
-    public Category getOne(Integer id) {
+    public Category getCategory(Integer id) {
 
         return categoryRep.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundExceptionIntValue("Category", "ID", id));
+    }
+
+    public Category getOneByName(String name) {
+        return categoryRep.findByCategoryName(name);
     }
 }

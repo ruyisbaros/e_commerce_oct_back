@@ -37,8 +37,12 @@ public class CategoryController {
         categoryService.updateCatgry(request,id);
     }
 
-    @GetMapping("/get_one/{id}")
-    public Category getOne(@PathVariable Integer id){
-        return categoryService.getOne(id);
+    @GetMapping("/get_by_id/{id}")
+    public Category getCategory(@PathVariable Integer id){
+        return categoryService.getCategory(id);
+    }
+    @GetMapping("/get_by_name/{name}")
+    public Category getOne(@PathVariable String name){
+        return categoryService.getOneByName(name);
     }
 }

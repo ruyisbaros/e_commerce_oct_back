@@ -23,12 +23,15 @@ public class Product {
     private String description;
     @Column(nullable = false)
     private double price;
+    @Column(nullable = false)
     private int quantity;
-    private int rate;
+    @Column(nullable = false)
+    private double rate;
+    private int rate_times;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Image> productImages = new ArrayList<>();
 }

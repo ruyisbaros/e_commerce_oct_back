@@ -50,10 +50,10 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/", "index", "/image/png/**", "/image/jpeg/**", "/css/**", "/js/**").permitAll()
                 .antMatchers("/api/v1/auth/**",
-                        "/api/v1/images/**","/api/v1/categories/**").permitAll()
+                        "/api/v1/images/**", "/api/v1/categories/**", "/api/v1/products/**").permitAll()
                 .anyRequest().authenticated()
-               .and()
-               .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .and()
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 
         return http.build();
