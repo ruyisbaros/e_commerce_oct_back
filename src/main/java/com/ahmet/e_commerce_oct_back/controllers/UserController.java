@@ -71,7 +71,7 @@ public class UserController {
     }
 
     //Export Users info as CSV Format
-    @GetMapping("/export_csv")
+    @GetMapping("/admin/export_csv")
     public void exportToCsv(HttpServletResponse response) throws IOException {
         List<AppUser> users = userService.listAllUsers();
         UserCsvExporter exporter = new UserCsvExporter();
@@ -79,7 +79,7 @@ public class UserController {
     }
 
     //Export Users info as CSV Format
-    @GetMapping("/export_excel")
+    @GetMapping("/admin/export_excel")
     public void exportToExcel(HttpServletResponse response) throws IOException {
         List<AppUser> users = userService.listAllUsers();
         UserExcelExporter exporter = new UserExcelExporter();
@@ -87,7 +87,7 @@ public class UserController {
     }
 
     //Export Users info as CSV Format
-    @GetMapping("/export_pdf")
+    @GetMapping("/admin/export_pdf")
     public void exportToPdf(HttpServletResponse response) throws IOException {
         List<AppUser> users = userService.listAllUsers();
         UserPdfExporter exporter = new UserPdfExporter();
