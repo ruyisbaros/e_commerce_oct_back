@@ -56,10 +56,13 @@ public class UserService {
                 }
                 newUser.setRoles(roles);
             }
+            Image image;
             if (request.getImageId() != null) {
-                Image image = imageService.findImage(request.getImageId());
-                newUser.setImage(image);
+                image = imageService.findImage(request.getImageId());
+            }else{
+                image = imageService.findImage("pw4gq42vstslcyqzi81o");
             }
+            newUser.setImage(image);
 
             newUser.setFirstName(request.getFirstName());
             newUser.setLastName(request.getLastName());
