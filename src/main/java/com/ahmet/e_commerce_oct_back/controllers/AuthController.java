@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.nio.channels.ScatteringByteChannel;
 
-@CrossOrigin(origins = "https://e-commerce-oct-front.vercel.app",allowedHeaders = "*")
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1/auth")
 @AllArgsConstructor
