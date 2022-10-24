@@ -27,7 +27,7 @@ public class UserController {
 
     private UserRep userRep;
 
-    @GetMapping("/get_user/{userId}")
+    @GetMapping("/user/get_user/{userId}")
     public ResponseEntity<AppUser> getUser(@PathVariable Long userId) {
         AppUser foundUser = userService.findUser(userId);
 
@@ -43,7 +43,7 @@ public class UserController {
     ) {
         return userService.getAllUsers(pageSize, pageNo, sortDir, sortField, keyword);
     }
-    @GetMapping("/is_email_unique/{email}")
+    @GetMapping("/user/is_email_unique/{email}")
     public boolean check_email(@PathVariable String email) {
         return userRep.findByEmail(email).isPresent();
     }
@@ -55,7 +55,7 @@ public class UserController {
     }
 
     //update general
-    @PutMapping("/update_user/{userId}")
+    @PutMapping("/admin/update_user_admin/{userId}")
     public AppUser updateUser(@RequestBody UserDto request, @PathVariable Long userId) {
         return userService.updateUser(userId, request);
     }
