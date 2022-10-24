@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@CrossOrigin(origins = "https://my-ecom-back.herokuapp.com",allowedHeaders = "*",allowCredentials = "*")
+@CrossOrigin(origins = "https://my-ecom-back.herokuapp.com",allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1/products")
 @AllArgsConstructor
