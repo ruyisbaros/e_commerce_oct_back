@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.nio.channels.ScatteringByteChannel;
 
-@CrossOrigin(origins = "https://my-ecom-back.herokuapp.com",allowedHeaders = "*")
+@CrossOrigin(origins = "https://my-ecom-back.herokuapp.com",allowedHeaders = "*",allowCredentials = "*")
 @RestController
 @RequestMapping("/api/v1/auth")
 @AllArgsConstructor

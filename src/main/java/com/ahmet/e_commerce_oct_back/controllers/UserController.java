@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin(origins = "https://my-ecom-back.herokuapp.com",allowedHeaders = "*")
+@CrossOrigin(origins = "https://my-ecom-back.herokuapp.com",allowedHeaders = "*",allowCredentials = "*")
 @RestController
 @RequestMapping("/api/v1/users")
 @AllArgsConstructor
