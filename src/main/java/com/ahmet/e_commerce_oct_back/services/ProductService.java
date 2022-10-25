@@ -60,7 +60,8 @@ public class ProductService {
     public Product updateRate(Long id, double rate) {
         Product toRate = this.getOne(id);
         toRate.setRate_times(toRate.getRate_times() + 1);
-        toRate.setRate(toRate.getRate() + rate);
+        double newRate = toRate.getRate() + rate;
+        toRate.setRate(newRate);
         return productRep.save(toRate);
     }
 
