@@ -46,7 +46,9 @@ public class ProductController {
     }
 
     @PutMapping("/user/update/rate/{id}")
-    public Product updateRate(@PathVariable Long id, @RequestBody double rate) {
+    public Product updateRate(@PathVariable Long id, @RequestParam double rate) {
+        System.out.println(id);
+        System.out.println(rate);
         return productService.updateRate(id, rate);
     }
 
