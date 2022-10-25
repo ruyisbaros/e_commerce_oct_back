@@ -61,7 +61,7 @@ public class ProductService {
         Product toRate = this.getOne(id);
         toRate.setRate_times(toRate.getRate_times() + 1);
         toRate.setRate(toRate.getRate() + rate);
-        return toRate;
+        return productRep.save(toRate);
     }
 
 
