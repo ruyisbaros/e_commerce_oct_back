@@ -92,20 +92,7 @@ public class WebSecurityConfig {
         provider.setUserDetailsService(userService);
         return provider;
     }
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry
-                        .addMapping("/**")
-                        .allowedOrigins("https://my-ecom-back.herokuapp.com")
-                        .allowCredentials(true)
-                        .allowedHeaders("Accept", "X-Requested-With","Cache-Control", "Authorization", "Content-Type", "apikey", "tenantId")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE");
-            }
-        };
-    }
+
 //    @Bean
 //    public CorsConfigurationSource corsConfigurationSource() {
 //        final CorsConfiguration configuration = new CorsConfiguration();
