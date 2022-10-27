@@ -1,6 +1,7 @@
 package com.ahmet.e_commerce_oct_back.configurations;
 
 import com.ahmet.e_commerce_oct_back.JWT.JwtFilter;
+import com.sun.tools.javac.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import org.springframework.core.Ordered;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -58,7 +60,7 @@ public class WebSecurityConfig {
                 ));
 
         http
-                .csrf().disable()
+                .cors(Customizer.withDefaults()).csrf().disable()
 
                 .authorizeRequests()
                 .antMatchers("/", "index", "/image/png/**", "/image/jpeg/**", "/css/**", "/js/**").permitAll()
@@ -93,21 +95,23 @@ public class WebSecurityConfig {
         return provider;
     }
 
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        final CorsConfiguration configuration = new CorsConfiguration();
-//
-//        configuration.setAllowedOrigins(Collections.singletonList("https://my-ecom-back.herokuapp.com")); // www - obligatory
-//       //configuration.setAllowedOrigins(Collections.singletonList("*"));  //set access from all domains
-//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-//        configuration.setAllowCredentials(true);
-//        configuration.setAllowedHeaders(Arrays.asList("Accept", "X-Requested-With","Cache-Control", "Authorization", "Content-Type", "apikey", "tenantId"));
-//
-//        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//
-//        return source;
-//    }
+
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+         CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.setAllowedOrigins(Arrays.asList("https://my-ecom-back.herokuapp.com")); // www - obligatory
+       //configuration.setAllowedOrigins(Collections.singletonList("*"));  //set access from all domains
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedHeaders(List.of("Accept", "X-Requested-With", "Cache-Control", "Authorization", "Content-Type", "apikey", "tenantId"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
+    }
 
 
 

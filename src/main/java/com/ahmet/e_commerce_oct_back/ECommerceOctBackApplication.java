@@ -13,19 +13,6 @@ public class ECommerceOctBackApplication {
 		SpringApplication.run(ECommerceOctBackApplication.class, args);
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry
-					.addMapping("/api/v1/***")
-						.allowedOrigins("*")
-						.allowCredentials(true)
-						.allowedHeaders("Accept", "X-Requested-With","Cache-Control", "Authorization", "Content-Type", "apikey", "tenantId")
-						.allowedMethods("GET", "POST", "PUT", "DELETE");
-			}
-		};
-	}
+
 
 }
