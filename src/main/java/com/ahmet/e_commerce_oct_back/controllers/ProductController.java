@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 //@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/products")
 @AllArgsConstructor
