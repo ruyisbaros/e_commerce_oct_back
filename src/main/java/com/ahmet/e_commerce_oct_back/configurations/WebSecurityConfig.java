@@ -101,11 +101,11 @@ public class WebSecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
          CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(Arrays.asList("https://my-ecom-back.herokuapp.com")); // www - obligatory
-       //configuration.setAllowedOrigins(Collections.singletonList("*"));  //set access from all domains
+        //configuration.setAllowedOrigins(Arrays.asList("https://my-ecom-back.herokuapp.com"));
+       configuration.setAllowedOrigins(Collections.singletonList("*"));  //set access from all domains
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowCredentials(true);
-        configuration.setAllowedHeaders(List.of("Accept", "X-Requested-With", "Cache-Control", "Authorization", "Content-Type", "apikey", "tenantId"));
+        configuration.setAllowedHeaders(Arrays.asList("Accept", "X-Requested-With", "Cache-Control", "Authorization", "Content-Type", "apikey", "tenantId"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
