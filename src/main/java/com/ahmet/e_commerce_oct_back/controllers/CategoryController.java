@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin(origins = "https://my-ecom-back.herokuapp.com",allowedHeaders = "*")
+@CrossOrigin(origins = "https://shopwithahmet.netlify.app",allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1/categories")
 @AllArgsConstructor

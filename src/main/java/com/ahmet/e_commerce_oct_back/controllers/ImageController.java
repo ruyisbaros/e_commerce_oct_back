@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Map;
 
-@CrossOrigin(origins = "https://my-ecom-back.herokuapp.com",allowedHeaders = "*")
+@CrossOrigin(origins = "https://shopwithahmet.netlify.app",allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1/images")
 @AllArgsConstructor
