@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.nio.channels.ScatteringByteChannel;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/auth")
 @AllArgsConstructor
