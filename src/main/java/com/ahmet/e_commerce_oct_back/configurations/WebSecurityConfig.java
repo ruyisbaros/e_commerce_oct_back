@@ -56,7 +56,7 @@ public class WebSecurityConfig {
                 ));
 
         http
-                .cors().and().csrf().disable()
+                .csrf().disable()
 
                 .authorizeRequests()
                 .antMatchers("/", "index", "/image/png/**", "/image/jpeg/**", "/css/**", "/js/**").permitAll()
