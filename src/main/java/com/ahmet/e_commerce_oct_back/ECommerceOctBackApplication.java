@@ -12,7 +12,4 @@ public class ECommerceOctBackApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ECommerceOctBackApplication.class, args);
 	}
-
-//test
-
 }
