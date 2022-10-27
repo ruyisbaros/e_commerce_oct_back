@@ -4,6 +4,7 @@ import com.ahmet.e_commerce_oct_back.JWT.JwtFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -49,8 +50,13 @@ public class WebSecurityConfig {
 
                 .authorizeRequests()
                 .antMatchers("/", "index", "/image/png/**", "/image/jpeg/**", "/css/**", "/js/**").permitAll()
-                .antMatchers("/api/v1/auth/**",
-                        "/api/v1/images/**", "/api/v1/categories/**", "/api/v1/products/**","/api/v1/users/**").permitAll()
+                .antMatchers("/api/v1/auth/**", "/api/v1/images/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/categories/user/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/products/user/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/users/user/**").permitAll()
+                .antMatchers("/api/v1/categories/admin/**").hasAuthority("Admin")
+                .antMatchers("/api/v1/products/admin/**").hasAuthority("Admin")
+                .antMatchers("/api/v1/users/admin/**").hasAuthority("Admin")
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
@@ -88,7 +94,8 @@ public class WebSecurityConfig {
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
             response.setHeader("Access-Control-Max-Age", "3600");
-            response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            response.setHeader("Access-Control-Allow-Headers", "*");
+
             chain.doFilter(req, res);
         }
 
