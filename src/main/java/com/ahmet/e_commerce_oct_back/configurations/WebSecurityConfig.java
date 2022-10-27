@@ -91,10 +91,16 @@ public class WebSecurityConfig {
         @Override
         public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
             HttpServletResponse response = (HttpServletResponse) res;
+            HttpServletResponse request = (HttpServletResponse) req;
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
             response.setHeader("Access-Control-Max-Age", "3600");
             response.setHeader("Access-Control-Allow-Headers", "*");
+
+            request.setHeader("Access-Control-Allow-Origin", "*");
+            request.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
+            request.setHeader("Access-Control-Max-Age", "3600");
+            request.setHeader("Access-Control-Allow-Headers", "*");
 
             chain.doFilter(req, res);
         }
