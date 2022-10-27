@@ -76,7 +76,6 @@ public class WebSecurityConfig {
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 
-
         return http.build();
 
     }
@@ -96,25 +95,22 @@ public class WebSecurityConfig {
     }
 
 
-//Last
+    //Last
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-         CorsConfiguration configuration = new CorsConfiguration();
+        final CorsConfiguration configuration = new CorsConfiguration();
 
         //configuration.setAllowedOrigins(Arrays.asList("https://my-ecom-back.herokuapp.com"));
-       configuration.setAllowedOrigins(Collections.singletonList("*"));  //set access from all domains
+        configuration.setAllowedOrigins(Collections.singletonList("*"));  //set access from all domains
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList("Accept", "X-Requested-With", "Cache-Control", "Authorization", "Content-Type", "apikey", "tenantId"));
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
 
         return source;
     }
-
-
-
 
 
 //    @Component
