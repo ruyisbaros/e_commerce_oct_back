@@ -76,6 +76,22 @@ public class WebSecurityConfig {
 
     }
 
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        final CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.setAllowedOrigins(Arrays.asList("https://my-ecom-back.herokuapp.com")); // www - obligatory
+//        configuration.setAllowedOrigins(ImmutableList.of("*"));  //set access from all domains
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedHeaders(Arrays.asList("Accept", "X-Requested-With","Cache-Control", "Authorization", "Content-Type", "apikey", "tenantId"));
+
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
+    }
+
 //    @Bean
 //    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
 //            throws Exception {
@@ -155,21 +171,21 @@ public class WebSecurityConfig {
 //        }
 //    }
 
-    @Component
-    public class CorsFilter extends OncePerRequestFilter {
-
-        @Override
-        protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
-                                        final FilterChain filterChain) throws ServletException, IOException {
-            response.addHeader("Access-Control-Allow-Origin", "*");
-            response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, HEAD");
-            response.addHeader("Access-Control-Allow-Headers", "Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-            response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials");
-            response.addHeader("Access-Control-Allow-Credentials", "true");
-            response.addIntHeader("Access-Control-Max-Age", 10);
-            filterChain.doFilter(request, response);
-        }
-
-
-    }
+//    @Component
+//    public class CorsFilter extends OncePerRequestFilter {
+//
+//        @Override
+//        protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
+//                                        final FilterChain filterChain) throws ServletException, IOException {
+//            response.addHeader("Access-Control-Allow-Origin", "*");
+//            response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, HEAD");
+//            response.addHeader("Access-Control-Allow-Headers", "Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+//            response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials");
+//            response.addHeader("Access-Control-Allow-Credentials", "true");
+//            response.addIntHeader("Access-Control-Max-Age", 10);
+//            filterChain.doFilter(request, response);
+//        }
+//
+//
+//    }
 }
