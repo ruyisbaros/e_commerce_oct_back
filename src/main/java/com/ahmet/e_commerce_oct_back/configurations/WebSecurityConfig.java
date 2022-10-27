@@ -69,28 +69,29 @@ public class WebSecurityConfig {
                 .antMatchers("/api/v1/users/admin/**").hasAuthority("Admin")
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .headers().frameOptions().disable();
 
 
         return http.build();
 
     }
 
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        final CorsConfiguration configuration = new CorsConfiguration();
-//
-//        configuration.setAllowedOrigins(Arrays.asList("https://my-ecom-back.herokuapp.com")); // www - obligatory
-////        configuration.setAllowedOrigins(ImmutableList.of("*"));  //set access from all domains
-//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-//        configuration.setAllowCredentials(true);
-//        configuration.setAllowedHeaders(Arrays.asList("Accept", "X-Requested-With","Cache-Control", "Authorization", "Content-Type", "apikey", "tenantId"));
-//
-//        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//
-//        return source;
-//    }
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        final CorsConfiguration configuration = new CorsConfiguration();
+
+        //configuration.setAllowedOrigins(Arrays.asList("https://my-ecom-back.herokuapp.com")); // www - obligatory
+       configuration.setAllowedOrigins(Collections.singletonList("*"));  //set access from all domains
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedHeaders(Arrays.asList("Accept", "X-Requested-With","Cache-Control", "Authorization", "Content-Type", "apikey", "tenantId"));
+
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
+    }
 
 //    @Bean
 //    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
