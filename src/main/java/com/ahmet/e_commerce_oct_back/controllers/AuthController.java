@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.nio.channels.ScatteringByteChannel;
-
+@CrossOrigin(origins = "https://shopwithahmet.netlify.app",allowedHeaders = "*",allowCredentials = "true")
 @RestController
 @RequestMapping("/api/v1/auth")
 @AllArgsConstructor
