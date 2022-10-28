@@ -68,7 +68,7 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.GET, "/api/v1/categories/user/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/products/user/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/users/user/**").permitAll()
-                .antMatchers("/api/v1/carts/user/**").authenticated()
+                .antMatchers("/api/v1/carts/user/**").hasAuthority("User")
                 .antMatchers("/api/v1/categories/admin/**").hasAuthority("Admin")
                 .antMatchers("/api/v1/products/admin/**").hasAuthority("Admin")
                 .antMatchers("/api/v1/users/admin/**").hasAuthority("Admin")
