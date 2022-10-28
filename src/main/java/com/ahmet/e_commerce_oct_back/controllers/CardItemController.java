@@ -41,7 +41,7 @@ public class CardItemController {
         return new ResponseEntity<>(new ApiResponse("Cart Item has been deleted", true), HttpStatus.OK);
     }
 
-    @DeleteMapping("user/delete_all/{userId}")
+    @DeleteMapping("/user/delete_all/{userId}")
     public ResponseEntity<ApiResponse> deleteUsersAllCarts(@PathVariable Long userId){
 
         cardItemService.makeEmptyUserCartBox(userId);

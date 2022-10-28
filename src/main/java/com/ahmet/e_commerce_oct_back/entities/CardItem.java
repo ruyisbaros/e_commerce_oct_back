@@ -21,12 +21,10 @@ public class CardItem {
 
     private Date createdDate;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private AppUser appUser;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Product product;
 
 

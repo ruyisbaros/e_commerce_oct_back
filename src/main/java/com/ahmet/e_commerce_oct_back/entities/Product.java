@@ -32,6 +32,6 @@ public class Product {
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private List<Image> productImages = new ArrayList<>();
 }
