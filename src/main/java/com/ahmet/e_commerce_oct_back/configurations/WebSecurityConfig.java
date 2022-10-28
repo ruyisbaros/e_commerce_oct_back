@@ -60,8 +60,7 @@ public class WebSecurityConfig {
                 ));
 
         http
-                .cors(Customizer.withDefaults()).csrf().disable()
-
+               .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "index", "/image/png/**", "/image/jpeg/**", "/css/**", "/js/**").permitAll()
                 .antMatchers("/api/v1/auth/**", "/api/v1/images/**").permitAll()
