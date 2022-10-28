@@ -60,8 +60,8 @@ public class WebSecurityConfig {
                 ));
 
         http
-                .cors(Customizer.withDefaults()).csrf().disable()
-
+                .cors(Customizer.withDefaults())
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "index", "/image/png/**", "/image/jpeg/**", "/css/**", "/js/**").permitAll()
                 .antMatchers("/api/v1/auth/**", "/api/v1/images/**").permitAll()
@@ -100,8 +100,8 @@ public class WebSecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
 
-        //configuration.setAllowedOrigins(Arrays.asList("https://my-ecom-back.herokuapp.com"));
-        configuration.setAllowedOrigins(Collections.singletonList("*"));  //set access from all domains
+        configuration.setAllowedOrigins(Arrays.asList("https://my-ecom-back.herokuapp.com"));
+        //configuration.setAllowedOrigins(Collections.singletonList("*"));  //set access from all domains
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList("Accept", "X-Requested-With", "Cache-Control", "Authorization", "Content-Type", "apikey", "tenantId"));
