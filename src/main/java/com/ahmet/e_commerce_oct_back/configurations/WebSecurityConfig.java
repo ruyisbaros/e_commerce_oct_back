@@ -61,7 +61,7 @@ public class WebSecurityConfig {
 
         http
                 .cors().and()
-//               .csrf().disable()
+              .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "index", "/image/png/**", "/image/jpeg/**", "/css/**", "/js/**").permitAll()
                 .antMatchers("/api/v1/auth/**", "/api/v1/images/**").permitAll()
@@ -119,7 +119,7 @@ public class WebSecurityConfig {
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH",
                 "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type",
-                "x-auth-token","accept","origin"));
+                "x-auth-token","accept","origin","apikey", "tenantId","X-Requested-With", "Cache-Control"));
         configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
         UrlBasedCorsConfigurationSource source = new
                 UrlBasedCorsConfigurationSource();
