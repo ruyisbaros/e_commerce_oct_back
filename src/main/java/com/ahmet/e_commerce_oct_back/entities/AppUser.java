@@ -42,6 +42,7 @@ public class AppUser implements UserDetails {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Image image;
+    //test
     @ManyToMany( cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
