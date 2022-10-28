@@ -1,7 +1,7 @@
 package com.ahmet.e_commerce_oct_back.configurations;
 
 import com.ahmet.e_commerce_oct_back.JWT.JwtFilter;
-import com.sun.tools.javac.util.List;
+
 import lombok.AllArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
