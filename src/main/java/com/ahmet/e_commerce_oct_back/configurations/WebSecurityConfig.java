@@ -60,7 +60,8 @@ public class WebSecurityConfig {
                 ));
 
         http
-               .csrf().disable()
+                .cors().and()
+//               .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "index", "/image/png/**", "/image/jpeg/**", "/css/**", "/js/**").permitAll()
                 .antMatchers("/api/v1/auth/**", "/api/v1/images/**").permitAll()
@@ -111,33 +112,48 @@ public class WebSecurityConfig {
 //        return source;
 //    }
 
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH",
+                "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type",
+                "x-auth-token","accept","origin"));
+        configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+        UrlBasedCorsConfigurationSource source = new
+                UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
 
-    @Component
-    public class CorsFilter implements Filter {
-
-        @Override
-        public void init(FilterConfig filterConfig) throws ServletException {
-
-        }
-
-        @Override
-        public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-            HttpServletResponse response = (HttpServletResponse) res;
-            response.setHeader("Access-Control-Allow-Credentials","true");
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-            response.setHeader("Access-Control-Max-Age", "3600");
-            response.setHeader("Access-Control-Allow-Headers", "Authorization, Origin, " +
-                    "X-Requested-With, Content-Type, Accept,Referer,sec-ch-ua,sec-ch-ua-mobile,sec-ch-ua-platform,User-Agent");
-
-            chain.doFilter(req, res);
-        }
-
-        @Override
-        public void destroy() {
-
-        }
+        return source;
     }
+
+//    @Component
+//    public class CorsFilter implements Filter {
+//
+//        @Override
+//        public void init(FilterConfig filterConfig) throws ServletException {
+//
+//        }
+//
+//        @Override
+//        public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+//            HttpServletResponse response = (HttpServletResponse) res;
+//            response.setHeader("Access-Control-Allow-Credentials","true");
+//            response.setHeader("Access-Control-Allow-Origin", "*");
+//            response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
+//            response.setHeader("Access-Control-Max-Age", "3600");
+//            response.setHeader("Access-Control-Allow-Headers", "Authorization, Origin, " +
+//                    "X-Requested-With, Content-Type, Accept,Referer,sec-ch-ua,sec-ch-ua-mobile,sec-ch-ua-platform,User-Agent");
+//
+//            chain.doFilter(req, res);
+//        }
+//
+//        @Override
+//        public void destroy() {
+//
+//        }
+//    }
 
 
 }
