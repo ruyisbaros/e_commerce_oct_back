@@ -119,7 +119,6 @@ public class WebSecurityConfig {
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH",
                 "DELETE", "OPTIONS"));
-        configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type",
                 "x-auth-token","accept","origin","apikey", "tenantId","X-Requested-With", "Cache-Control"));
         configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
