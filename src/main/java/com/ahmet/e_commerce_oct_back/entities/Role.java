@@ -21,8 +21,8 @@ public class Role {
     private String description;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "roles")
-    private List<AppUser> appUsers=new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
+    private List<AppUser> appUsers = new ArrayList<>();
 
     public Role(String roleName) {
         this.roleName = roleName;
