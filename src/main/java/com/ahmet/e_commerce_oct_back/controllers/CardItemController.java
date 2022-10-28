@@ -30,7 +30,7 @@ public class CardItemController {
         return cardItemService.findOneCart(cartId);
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/user/get_all/{userId}")
     List<CardItem> findUsersCartItems(@PathVariable Long userId){
         return cardItemService.findUserCarts(userId);
     }
