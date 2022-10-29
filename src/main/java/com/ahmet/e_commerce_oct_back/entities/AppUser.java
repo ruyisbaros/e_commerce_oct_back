@@ -43,7 +43,7 @@ public class AppUser implements UserDetails {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Image image;
     //test
-    @ManyToMany( cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -55,16 +55,18 @@ public class AppUser implements UserDetails {
     //USER DETAILS IMPLEMENTS
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authorities=new ArrayList<>();
-        for(Role role:roles){
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for (Role role : roles) {
             authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         }
         return authorities;
     }
+
     @Override
     public String getPassword() {
         return password;
     }
+
     @Override
     public String getUsername() {
         return email;
