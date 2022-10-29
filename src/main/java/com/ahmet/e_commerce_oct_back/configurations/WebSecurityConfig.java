@@ -119,8 +119,8 @@ public class WebSecurityConfig {
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH",
                 "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type",
-                "x-auth-token","accept","origin","apikey", "tenantId","X-Requested-With", "Cache-Control"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "content-type",
+                "x-auth-token","Accept","Origin","apikey", "tenantId","X-Requested-With","X-Frame-Options", "Cache-Control"));
         configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
         UrlBasedCorsConfigurationSource source = new
                 UrlBasedCorsConfigurationSource();
