@@ -59,7 +59,7 @@ public class WebSecurityConfig {
                 ));
 
         http
-                .cors().and()
+//                .cors().and()
                 .csrf().disable()
                 .authorizeRequests()
                 //.antMatchers("/api/v1/carts/user/**").hasAuthority("User")
