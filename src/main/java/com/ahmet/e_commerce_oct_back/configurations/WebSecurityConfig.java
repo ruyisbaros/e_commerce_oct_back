@@ -51,7 +51,6 @@ public class WebSecurityConfig {
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.exceptionHandling().authenticationEntryPoint(
                 ((request, response, authException) -> {
                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
@@ -61,7 +60,7 @@ public class WebSecurityConfig {
 
         http
                 .cors().and()
-              .csrf().disable()
+                .csrf().disable()
                 .authorizeRequests()
                 //.antMatchers("/api/v1/carts/user/**").hasAuthority("User")
                 .antMatchers("/api/v1/categories/admin/**").hasAuthority("Admin")
@@ -73,8 +72,9 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.GET, "/api/v1/products/user/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/users/user/**").permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 
         return http.build();
@@ -120,7 +120,7 @@ public class WebSecurityConfig {
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH",
                 "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "content-type",
-                "x-auth-token","Accept","Origin","apikey", "tenantId","X-Requested-With","X-Frame-Options", "Cache-Control"));
+                "x-auth-token", "Accept", "Origin", "apikey", "tenantId", "X-Requested-With", "X-Frame-Options", "Cache-Control"));
         configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
         UrlBasedCorsConfigurationSource source = new
                 UrlBasedCorsConfigurationSource();
