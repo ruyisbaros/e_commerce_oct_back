@@ -20,29 +20,29 @@ public class CardItemController {
     private CardItemService cardItemService;
 
     @PostMapping("/user/create")
-    public ResponseEntity<?> addToCart(@Valid  @RequestBody CardItemDTO request){
-        CardItem toCreated=cardItemService.createCart(request);
+    public ResponseEntity<?> addToCart(@RequestBody CardItemDTO request) {
+        CardItem toCreated = cardItemService.createCart(request);
         return ResponseEntity.ok(toCreated);
     }
 
     @GetMapping("/user/get_one/{cartId}")
-    public CardItem findACart(@PathVariable Long cartId){
+    public CardItem findACart(@PathVariable Long cartId) {
         return cardItemService.findOneCart(cartId);
     }
 
     @GetMapping("/user/get_all/{userId}")
-    List<CardItem> findUsersCartItems(@PathVariable Long userId){
+    List<CardItem> findUsersCartItems(@PathVariable Long userId) {
         return cardItemService.findUserCarts(userId);
     }
 
     @DeleteMapping("/user/delete_one/{cartId}")
-    public ResponseEntity<ApiResponse> deleteCartItem(@PathVariable Long cartId){
+    public ResponseEntity<ApiResponse> deleteCartItem(@PathVariable Long cartId) {
         cardItemService.deleteCartItem(cartId);
         return new ResponseEntity<>(new ApiResponse("Cart Item has been deleted", true), HttpStatus.OK);
     }
 
     @DeleteMapping("/user/delete_all/{userId}")
-    public ResponseEntity<ApiResponse> deleteUsersAllCarts(@PathVariable Long userId){
+    public ResponseEntity<ApiResponse> deleteUsersAllCarts(@PathVariable Long userId) {
 
         cardItemService.makeEmptyUserCartBox(userId);
         return new ResponseEntity<>(new ApiResponse("Cart Item has been deleted", true), HttpStatus.OK);
