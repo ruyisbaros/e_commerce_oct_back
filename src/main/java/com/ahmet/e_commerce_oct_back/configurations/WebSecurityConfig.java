@@ -60,6 +60,7 @@ public class WebSecurityConfig {
 
         http
 //                .cors().and()
+                .cors(Customizer.withDefaults())
                 .csrf().disable()
                 .authorizeRequests()
                 //.antMatchers("/api/v1/carts/user/**").hasAuthority("User")
